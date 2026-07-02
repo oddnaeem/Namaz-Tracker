@@ -20,12 +20,12 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    # গ্র্যাডল সেটআপ এবং ক্যাশ ম্যানেজমেন্ট (wrapper jar ছাড়াই কাজ করবে)
+    # এখানে gradle-version বাড়িয়ে ৮.৯ করা হয়েছে যাতে Android Plugin এরর না দেয়
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
       with:
-        gradle-version: '8.5' # আপনার প্রোজেক্টের প্রয়োজনীয় ভার্সনটি এখানে দিন
+        gradle-version: '8.9' 
 
-    # এখানে './gradlew' এর বদলে সরাসরি 'gradle' ব্যবহার করা হয়েছে
+    # wrapper jar ছাড়া সরাসরি global gradle দিয়ে বিল্ড করা হচ্ছে
     - name: Build with Gradle
       run: gradle build
