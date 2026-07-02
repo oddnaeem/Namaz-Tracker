@@ -20,12 +20,17 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    # এখানে gradle-version বাড়িয়ে ৮.৯ করা হয়েছে যাতে Android Plugin এরর না দেয়
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
       with:
         gradle-version: '8.9' 
 
-    # wrapper jar ছাড়া সরাসরি global gradle দিয়ে বিল্ড করা হচ্ছে
     - name: Build with Gradle
       run: gradle build
+
+    # এই নতুন স্টেপটি বিল্ড হওয়া APK-টি ডাউনলোডের জন্য আপলোড করবে
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: Namaz-Tracker-APK
+        path: app/build/outputs/apk/debug/app-debug.apk
